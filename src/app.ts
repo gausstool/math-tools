@@ -1,6 +1,6 @@
 import { MathChart, type MathChartOptions } from "./math-chart";
 
-export function setupGeogebra(element: HTMLDivElement) {
+export function setMathChart(element: HTMLDivElement) {
   const params: MathChartOptions = {
     width: 800,
     height: 800,
