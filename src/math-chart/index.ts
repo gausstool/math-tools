@@ -5,7 +5,7 @@ export interface MathChartOptions {
   height: number;
   xrange: [number, number];
   yrange: [number, number];
-  formulas: string[];
+  formulas: (string | Function)[];
 }
 
 export class MathChart {
@@ -56,7 +56,11 @@ export class MathChart {
       let y = 0;
       while (px <= end) {
         let x = map(px, start, end, this.option.xrange[0], this.option.xrange[1]);
-        y = eval(formula.replace("x", x.toString()));
+        if (typeof formula === "function") {
+          y = formula(x);
+        } else {
+          y = eval(formula.replace("x", x.toString()));
+        }
         let py = map(y, this.option.yrange[0], this.option.yrange[1], -this.option.height / 2, this.option.height / 2);
         this.ctx.lineTo(px, -py);
         px += step;
