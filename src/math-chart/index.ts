@@ -47,21 +47,21 @@ export class MathChart {
 
   private drawFormula() {
     this.ctx.beginPath();
-    let start = -this.option.width / 2;
-    let end = this.option.width / 2;
-    let step = 0.1;
+    const start = -this.option.width / 2;
+    const end = this.option.width / 2;
+    const step = 0.1;
     this.option.formulas.forEach(formula => {
       this.ctx.beginPath();
       let px = start;
       let y = 0;
       while (px <= end) {
-        let x = map(px, start, end, this.option.xrange[0], this.option.xrange[1]);
+        const x = map(px, start, end, this.option.xrange[0], this.option.xrange[1]);
         if (typeof formula === "function") {
           y = formula(x);
         } else {
           y = eval(formula.replace("x", x.toString()));
         }
-        let py = map(y, this.option.yrange[0], this.option.yrange[1], -this.option.height / 2, this.option.height / 2);
+        const py = map(y, this.option.yrange[0], this.option.yrange[1], -this.option.height / 2, this.option.height / 2);
         this.ctx.lineTo(px, -py);
         px += step;
       }
