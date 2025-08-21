@@ -1,5 +1,5 @@
 import { map } from "./math";
-import * as math from "mathjs";
+import { compile } from "mathjs";
 
 export interface MathChartOptions {
   xrange: [number, number];
@@ -61,7 +61,7 @@ export class MathChart {
 
       let px = start;
       let y = 0;
-      let formulaFn = math.compile(formula);
+      let formulaFn = compile(formula);
       while (px <= end) {
         const x = map(
           px,
