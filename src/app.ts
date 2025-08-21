@@ -1,14 +1,8 @@
-import { MathChart, type MathChartOptions } from "./math-chart";
+import { MathChart, type MathChartParams } from "./math-chart";
 
 export function setMathChart(element: HTMLDivElement) {
-  const params: MathChartOptions = {
-    xrange: [-10, 10],
-    yrange: [-10, 10],
-    formulas: [
-        "log(x + 1)",
-        "x",
-        "x * x",
-    ],
+  const params: MathChartParams = {
+    formulas: ["log(x + 1)", "x", "x * x", "exp(x) -1 ", "sqrt(x)"],
   };
   const mcharts = new MathChart(element);
   mcharts.setOption(params);

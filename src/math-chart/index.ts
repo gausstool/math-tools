@@ -7,6 +7,9 @@ export interface MathChartOptions {
   formulas: string[];
 }
 
+export type MathChartParams = Partial<MathChartOptions>
+
+
 export class MathChart {
   element: HTMLDivElement;
   canvas: HTMLCanvasElement;
@@ -17,6 +20,8 @@ export class MathChart {
     formulas: ["0"],
   };
 
+  colors = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#27727B', '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'];
+
   constructor(element: HTMLDivElement) {
     this.element = element;
     this.canvas = document.createElement("canvas");
@@ -26,7 +31,7 @@ export class MathChart {
     this.element.appendChild(this.canvas);
   }
 
-  setOption(options: MathChartOptions) {
+  setOption(options: MathChartParams) {
     this.option = { ...this.option, ...options };
   }
 
@@ -49,8 +54,11 @@ export class MathChart {
     const start = -this.canvas.width / 2;
     const end = this.canvas.width / 2;
     const step = 0.1;
-    this.option.formulas.forEach((formula) => {
+    this.option.formulas.forEach((formula, index) => {
       this.ctx.beginPath();
+      this.ctx.strokeStyle = this.colors[index];
+      this.ctx.lineWidth = 1;
+
       let px = start;
       let y = 0;
       let formulaFn = math.compile(formula);
