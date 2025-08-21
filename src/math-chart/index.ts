@@ -61,6 +61,9 @@ export class MathChart {
     this.ctx.strokeStyle = "#000";    
     this.ctx.moveTo(-this.canvas.width / 2, 0);
     this.ctx.lineTo(this.canvas.width / 2, 0);
+    this.ctx.lineTo(this.canvas.width / 2 - 10, -10);
+    this.ctx.moveTo(this.canvas.width / 2, 0);
+    this.ctx.lineTo(this.canvas.width / 2 - 10, 10);
     this.ctx.stroke();
   }
 
@@ -68,19 +71,22 @@ export class MathChart {
     this.ctx.beginPath();
     this.ctx.lineWidth = 2;
     this.ctx.strokeStyle = "#000";
+    this.ctx.moveTo(0, this.canvas.height / 2);
+    this.ctx.lineTo(0, -this.canvas.height / 2);
+    this.ctx.lineTo(-10, - this.canvas.height / 2 + 10);
     this.ctx.moveTo(0, -this.canvas.height / 2);
-    this.ctx.lineTo(0, this.canvas.height / 2);
+    this.ctx.lineTo(10, - this.canvas.height / 2 + 10);
     this.ctx.stroke();
   }
 
   private drawGrid() {
-    this.ctx.lineWidth = 0.5;
+    this.ctx.lineWidth = 0.5
     const [startX, endX] = this.option.xrange;
     const [startY, endY] = this.option.yrange;
-    const step = 0.1;
+    const step = 0.2;
     for (let x = startX; x <= endX; x = add(x, step)) {
       this.ctx.beginPath();
-      this.ctx.strokeStyle = abs(round(x, 2) % 1) < 0.01 ? "#ccc" : "#eee";    
+      this.ctx.strokeStyle = abs(round(x, 2) % 1) < 0.01 ? "#777" : "#eee";    
       const px = map(
         x,
         this.option.xrange[0],
@@ -93,7 +99,7 @@ export class MathChart {
       this.ctx.stroke();
     }
     for (let y = startY; y <= endY; y = add(y, step)) {
-      this.ctx.strokeStyle = abs(round(y, 2) % 1) < 0.01 ? "#ccc" : "#eee";
+      this.ctx.strokeStyle = abs(round(y, 2) % 1) < 0.01 ? "#777" : "#eee";
       this.ctx.beginPath();
       const py = map(
         y,
