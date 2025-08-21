@@ -2,12 +2,10 @@ import { MathChart, type MathChartOptions } from "./math-chart";
 
 export function setMathChart(element: HTMLDivElement) {
   const params: MathChartOptions = {
-    width: 800,
-    height: 800,
     xrange: [-10, 10],
     yrange: [-10, 10],
     formulas: [
-        "Math.log(x + 1) ",
+        "log(x + 1)",
         "x",
         "x * x",
     ],
